@@ -7,8 +7,6 @@ import com.gojek.parkinglot.exceptions.ParkingLotOverFlowException;
 
 public interface SlotRepository {
 
-	public int getCapacity();
-
 	public void allotSlot(Car car) throws ParkingLotOverFlowException;
 
 	public Car deAllotSlot(int slot) throws NoCarFoundException;
