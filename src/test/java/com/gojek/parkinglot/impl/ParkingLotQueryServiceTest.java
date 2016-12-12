@@ -5,40 +5,22 @@ import static org.junit.Assert.fail;
 
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.gojek.parkinglot.AbstractTestCase;
 import com.gojek.parkinglot.Car;
 import com.gojek.parkinglot.ParkingLotQueryService;
-import com.gojek.parkinglot.SlotRepository;
 import com.gojek.parkinglot.exceptions.NoCarFoundException;
 import com.gojek.parkinglot.exceptions.ParkingLotOverFlowException;
 
-public class ParkingLotQueryServiceTest {
+public class ParkingLotQueryServiceTest extends AbstractTestCase {
 
 	private ParkingLotQueryService parkingLotQueryService;
 
-	private final static int capacity = 3;
-
-	private SlotRepository slotRepository;
-
-	@After
-	public void tearDown() {
-		for (int i = 0; i < capacity; i++) {
-			try {
-				slotRepository.deAllotSlot(i + 1);
-			} catch (NoCarFoundException e) {
-
-			}
-
-		}
-
-	}
-
 	@Before
 	public void setUp() {
-		slotRepository = SlotRepositoryImpl.getInstance(capacity);
+		super.setUp();
 		parkingLotQueryService = new ParkingLotQueryServiceImpl(slotRepository);
 	}
 
